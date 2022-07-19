@@ -1,0 +1,1009 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>icRestLib</name>
+    </assembly>
+    <members>
+        <member name="T:icRestLib.ActionDefinition">
+            <summary>
+            Definition of script action for standard REST endpoints
+            </summary>
+        </member>
+        <member name="P:icRestLib.ActionDefinition.actionName">
+            <summary>
+            The name of the action
+            </summary>
+        </member>
+        <member name="P:icRestLib.ActionDefinition.iconUrl">
+            <summary>
+            Relative url the action icon included with the service
+            </summary>
+        </member>
+        <member name="P:icRestLib.ActionDefinition.description">
+            <summary>
+            Description of the action
+            </summary>
+        </member>
+        <member name="P:icRestLib.ActionDefinition.actionTakesAFileAsAdditionalParameter">
+            <summary>
+            If the action takes a file as an additional parameter, its REST request POST will be different (uses multipart form)
+            </summary>
+        </member>
+        <member name="T:icRestLib.ActionManager">
+            <summary>
+            For possible Action Discovery
+            </summary>
+        </member>
+        <member name="F:icRestLib.ActionManager._actionDefinitions">
+            <summary>
+            Keyed by actionType (ALL CAPS), access Action Definitions handled by this API
+            </summary>
+        </member>
+        <member name="T:icRestLib.ActionExecutionInfo">
+            <summary>
+            Telemetry data for the execution of a script action within a script.
+            </summary>
+        </member>
+        <member name="P:icRestLib.ActionExecutionInfo.contactId">
+            <summary>
+            inContact script instance identifier.
+            </summary>
+        </member>
+        <member name="P:icRestLib.ActionExecutionInfo.busNo">
+            <summary>
+            inContact Business Unit identifier.
+            </summary>
+        </member>
+        <member name="P:icRestLib.ActionExecutionInfo.requestId">
+            <summary>
+            If provided in a request, the requestId may be included in the response.
+            This can be useful if a unique value is passed, for referencing a single request/response in log files
+            </summary>
+        </member>
+        <member name="P:icRestLib.ActionExecutionInfo.actionType">
+            <summary>
+            Identify the requested action type.
+            </summary>
+        </member>
+        <member name="P:icRestLib.ActionExecutionInfo.actionId">
+            <summary>
+            Identifier for a unique action instance within a script.
+            </summary>
+        </member>
+        <member name="P:icRestLib.ActionExecutionInfo.scriptName">
+            <summary>
+            The path of the script making the action request.
+            </summary>
+        </member>
+        <member name="T:icRestLib.ActionParametersAbstractBase">
+            <summary>
+            Specific action Request parameters can be created with their own schema
+            </summary>
+        </member>
+        <member name="M:icRestLib.ActionParametersAbstractBase.parametersAreValid(System.String@)">
+            <summary>
+            Override this method to generically validate descended classes and report problems
+            </summary>       
+        </member>
+        <member name="T:icRestLib.ActionRequest">
+            <summary>
+            Generic structure for action requests.
+            Specific action endpoints can accept customized classes that have polymorphic serialization with this structure.
+            For example 'MySpecific' class can have a concrete 'parameters' class with named attributes, but will serialize
+            to JSON that can be deserialized to an ActionRequest without loss of data.
+            </summary>
+        </member>
+        <member name="P:icRestLib.ActionRequest.parameters">
+            <summary>
+            Parameters for the action request.  This class is used for Generic ActionRequests.  Specific action rest endpoints can define
+            schema for their parameters, but the schema must be deserializable from a Dictionary of name value pairs
+            </summary>
+        </member>
+        <member name="M:icRestLib.ActionRequest.#ctor">
+            <summary>
+            Construct properties
+            </summary>
+        </member>
+        <member name="T:icRestLib.ActionRequestAbstractBase">
+            <summary>
+            ActionRequest is the generic descendent of this class.  Other descendents must have a 'parameters' object
+            that is cross-serializable with Dictionary[string,string]
+            </summary>
+        </member>
+        <member name="P:icRestLib.ActionRequestAbstractBase.executionInfo">
+            <summary>
+            Information about the execution of an action instance within an inContact script.
+            </summary>
+        </member>
+        <member name="P:icRestLib.ActionRequestAbstractBase.systemTelemetryData">
+            <summary>
+            Data about the system making the action request
+            </summary>
+        </member>
+        <member name="T:icRestLib.ActionRequestResponse">
+            <summary>
+            Generic structure for action request reponses.
+            </summary>
+        </member>
+        <member name="P:icRestLib.ActionRequestResponse.branchName">
+            <summary>
+            By explicit name, which action branch should be taken in an inContact script as a result of the action completion
+            </summary>
+        </member>
+        <member name="P:icRestLib.ActionRequestResponse.nameValueParameters">
+            <summary>
+            Collection of named variables populated by the action processing.
+            For requests made by inContact scripts, these automatically become script variables by the key name.  
+            For public API responses, the nameValueParameters structure IS the API response body.
+            Nested JSON structures can be returned, though for script processing, it is more convenient to use flat structure.
+            </summary>
+        </member>
+        <member name="M:icRestLib.ActionRequestResponse.#ctor">
+            <summary>
+            Construct properties
+            </summary>
+        </member>
+        <member name="T:icRestLib.ActionRequestWithAudio">
+            <summary>
+            Generic structure for action requests that contain utterance audio populated by MediaServer REST PROMPT.
+            Specific action endpoints can accept customized classes that have polymorphic serialization with this structure.
+            For example 'MySpecific' class can have a concrete 'parameters' class with named attributes, but will serialize
+            to JSON that can be deserialized to an ActionRequest without loss of data.
+            </summary>
+        </member>
+        <member name="P:icRestLib.ActionRequestWithAudio.parameters">
+            <summary>
+            Parameters for the action request.  This class is used for Generic ActionRequests.  Specific action rest endpoints can define
+            schema for their parameters, but the schema must be deserializable from a Dictionary of name value pairs
+            </summary>
+        </member>
+        <member name="P:icRestLib.ActionRequestWithAudio.base64wavFile">
+            <summary>
+            Base64 encoded audio (populated by MediaServer with RestPrompt action).
+            This will be mono g711 ulaw 8bit 8khz including wav header.      
+            </summary>
+        </member>
+        <member name="M:icRestLib.ActionRequestWithAudio.#ctor">
+            <summary>
+            Construct properties
+            </summary>
+        </member>
+        <member name="T:icRestLib.BuildInfo">
+            <summary>
+            Standard object for standardized /stats/buildinfo endpoint
+            </summary>
+        </member>
+        <member name="P:icRestLib.BuildInfo.CommitHash">
+            <summary>
+            Latest commit hash
+            </summary>
+        </member>
+        <member name="P:icRestLib.BuildInfo.CodeBranch">
+            <summary>
+            Code Banch name
+            </summary>
+        </member>
+        <member name="P:icRestLib.BuildInfo.BuildHost">
+            <summary>
+            Host name of machine that built the code
+            </summary>
+        </member>
+        <member name="P:icRestLib.BuildInfo.UtcBuildTime">
+            <summary>
+            UTC time when the build was compiled
+            </summary>
+        </member>
+        <member name="P:icRestLib.BuildInfo.RepositoryUrl">
+            <summary>
+            URL of the code repository of this service
+            </summary>
+        </member>
+        <member name="P:icRestLib.BuildInfo.LastRepositoryTag">
+            <summary>
+            Last tag of the repository. Trailing -N-XX where N is number of commits since the tag, and XX the latest commit hash 
+            </summary>
+        </member>
+        <member name="P:icRestLib.BuildInfo.ApiName">
+            <summary>
+            Name of the API (shows up in Swagger, etc)
+            </summary>
+        </member>
+        <member name="P:icRestLib.BuildInfo.LatestApiVersion">
+            <summary>
+            The latest version of the API. (shows up in Swagger, etc)
+            </summary>
+        </member>
+        <member name="P:icRestLib.BuildInfo.InstanceId">
+            <summary>
+            A unique node identifier set at start up
+            </summary>
+        </member>
+        <member name="P:icRestLib.BuildInfo.StartTimeUtc">
+            <summary>
+            UTC time when this instance was started
+            </summary>
+        </member>
+        <member name="M:icRestLib.BuildInfo.LoadFromFile(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="buildinfoFile"></param>
+            <returns></returns>
+        </member>
+        <member name="T:icRestLib.ErrorResponse">
+            <summary>
+            Structure for a failure reponse
+            </summary>
+        </member>
+        <member name="P:icRestLib.ErrorResponse.error_description">
+            <summary>
+            Text describing the failure
+            </summary>
+        </member>
+        <member name="P:icRestLib.ErrorResponse.error">
+            <summary>
+            Text describing the failure
+            </summary>
+        </member>
+        <member name="T:icRestLib.ActionRequestWithFileUpload">
+            <summary>
+            Upload a file and an actionRequest to process it.
+            </summary>
+        </member>
+        <member name="P:icRestLib.ActionRequestWithFileUpload.actionRequest">
+            <summary>
+            Generic action request structure
+            </summary>
+        </member>
+        <member name="P:icRestLib.ActionRequestWithFileUpload.file">
+            <summary>
+            Upload a binary file.  This "file" parameter listed as a "query" parameter is ignored---the true "file" parameter is part of the multipart-formdata object.
+            </summary>
+        </member>
+        <member name="M:icRestLib.ActionRequestWithFileUpload.validateRestBinding(icRestLib.ActionRequestWithFileUpload,Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+            If the model is not complete, try getting the formData directly from the request manually (aspnetcore/swagger not quite getting it right between supporting both swaggerUI and HttpClients)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:icRestLib.ActionRequestWithFileUploadAbstractBase">
+            <summary>
+            TODO--these classes should be moved to icRestLib
+            </summary>
+        </member>
+        <member name="P:icRestLib.ActionRequestWithFileUploadAbstractBase.file">
+            <summary>
+            Upload a binary file.  This "file" parameter listed as a "query" parameter is ignored---the true "file" parameter is part of the multipart-formdata object.
+            </summary>
+        </member>
+        <member name="M:icRestLib.ActionRequestWithFileUploadAbstractBase.validateRestBinding(Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+            If the model is not complete, try getting the formData directly from the request manually (aspnetcore/swagger not quite getting it right between supporting both swaggerUI and HttpClients)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:icRestLib.ActionRequestWithFileUploadAbstractBase.populateActionRequestFromFormData(System.String)">
+            <summary>
+            Virtual function to reconcile multipart upload with Swagger
+            </summary>
+        </member>
+        <member name="T:icRestLib.REST_PROMPTparameters">
+            <summary>
+            Any REST_PROMPT descended action can add additional parameters
+            </summary>
+        </member>
+        <member name="P:icRestLib.REST_PROMPTparameters.sequence">
+            <summary>
+            Serialized sequence of prompt elemenets, including wav and TTS
+            </summary>
+        </member>
+        <member name="P:icRestLib.REST_PROMPTparameters.phrase">
+            <summary>
+            For documentation and telemetry, a template of the text of the prompt (including TTS and wav mixtures)
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:icRestLib.AudioCollectionRules.collectionType" -->
+        <member name="P:icRestLib.AudioCollectionRules.dtmfRules">
+            <summary>
+            Rules defining if and how the next round of user input can be collected by DTMF.
+            </summary>
+        </member>
+        <member name="P:icRestLib.AudioCollectionRules.bargeConfiguration">
+            <summary>
+            Rules determining if human can interrupt a bot prompt, including sensitivity settings
+            </summary>
+        </member>
+        <member name="P:icRestLib.AudioCollectionRules.audioTranscriptionConfig">
+            <summary>
+            Configuration for custom transcription that will override the transcription configuration on the VirtualAgent for this turn
+            </summary>
+        </member>
+        <member name="P:icRestLib.AudioTranscriptionConfig.transcriptionProfileId">
+            <summary>
+            Optional specification of a preconfigured TranscriptionProfile
+            If specified, the profile will override a VirtualAgent transcription configuration
+            </summary>
+        </member>
+        <member name="P:icRestLib.AudioTranscriptionConfig.hintPhrases">
+            <summary>
+            Optional list of phrases that can give hints to transcription engines (context models, product names, etc)
+            </summary>
+        </member>
+        <member name="T:icRestLib.BotErrorDetails.BotLoopErrorBehavior">
+            <summary>
+            Behavior to perform if BotProvider is unreachable or returns errors from any BotExchange
+            </summary>
+        </member>
+        <member name="P:icRestLib.BotErrorDetails.errorBehavior">
+            <summary>
+            Behavior to perform if BotProvider is unreachable or returns errors from any BotExchange
+            Possible values:
+            •ReturnControlToScriptThroughErrorBranch - Return control to script through Error Branch
+            •EndContact - End the bot session (hang up on phone call, end chat, etc)
+            </summary>
+        </member>
+        <member name="P:icRestLib.BotErrorDetails.errorPromptSequence">
+            <summary>
+            Optional sequence of prompts to play in case of error during the BotLoop.
+            If populated, the sequence will be rendered to user PRIOR to executing the specified 'errorBehavior'
+            </summary>
+        </member>
+        <member name="P:icRestLib.BotErrorDetails.systemErrorMessage">
+            <summary>
+            Debug level information that will be logged by the system to assist in troubleshooting
+            </summary>
+        </member>
+        <member name="T:icRestLib.UserInputType">
+            <summary>
+            User input types
+            </summary>
+        </member>
+        <member name="P:icRestLib.BotExchangeBaseActionParameters.userInput">
+            <summary>
+            Textual input from a user instigating a bot interaction.  This may be sourced from a chat client, or transcribed from audio input, or from other medium inputs.
+            If userInputType is 'BASE64_ENCODED_G711_ULAW_WAV_FILE', this attribute should be ignored, as the payload will be in the base64wavFile attribute
+            </summary>
+            <example>Men's basketball shoes</example>
+        </member>
+        <member name="P:icRestLib.BotExchangeBaseActionParameters.userInputType">
+            <summary>
+            Specifies the type of user input.  It can be either:
+             •NO_INPUT - No response was collected from the user (either from timeout or due to specification)
+             •TEXT (transcribed audio or user entered chat text in the 'userInput' field. This may also be detected DTMF digits in text form (12345))
+             •BASE64_ENCODED_G711_ULAW_WAV_FILE (entire utterance audio file---including the WAV header!!!).  This will be G.711 U-law 8 kHz 8 bit Mono.  The payload will be in the base64wavFile property of the actionRequest (not 'userInput' field)
+             •USER_INPUT_ARCHIVED_AS_SPECIFIED - Confirms that the user input has been archived to Storage Services as requested on the previous BotExchange
+             •USER_ENDED_SESSION - The user ended the bot session (hung up the phone, closed chat window, etc)
+             •AUTOMATED_TEXT - For things like Welcome messages (The user is wanting to start a bot session with the bot initiating the first prompt (rather than a script)).  Potentially can change bot states proactively
+            </summary>
+        </member>
+        <member name="P:icRestLib.BotExchangeBaseActionParameters.customPayload">
+            <summary>
+            Arbitrary and extensible data that can be passed from the inContact platform scripts to the BotProvider
+            This can be things like DNIS, ANI, SIP Headers, CRM data, etc
+            </summary>
+        </member>
+        <member name="P:icRestLib.BotExchangeBaseActionParameters.botSessionState">
+            <summary>
+            Any state data to be iteratively exchanged with a bot.  The platform will return this value throughout the 'GenericBotLoop'
+            This should include at least enough data to identify an existing session, if not having the entire bot state embedded in it (this can allow for "state-less" bots)
+            </summary>
+        </member>
+        <member name="P:icRestLib.BotExchangeBaseActionParameters.mediaType">
+            <summary>
+            Indicate the media type of the exchange.  inContact MediaServer will supply 'voip' for voice calls.  'chat' for inContact chat.  Future channels may include 'facebook', etc,
+            </summary>
+        </member>
+        <member name="P:icRestLib.BotExchangeBaseActionParameters.subMediaType">
+            <summary>
+            Indicate the sub media type(channel) of the exchange for digital mediatype.  Possible digital channel values 'twitter', 'chat', 'facebook', etc,
+            </summary>
+        </member>
+        <member name="P:icRestLib.BotExchangeRequest.base64wavFile">
+            <summary>
+            Base64 encoded audio populated by MediaServer with RestPrompt action.
+            When present, this will be mono g711 ulaw 8bit 8khz including wav header.      
+            </summary>
+        </member>
+        <member name="M:icRestLib.BotExchangeRequest.requestIsValid(icRestLib.BotExchangeRequest,System.String@)">
+            <summary>
+            Check for valid object
+            </summary>
+        </member>
+        <member name="T:icRestLib.BotExchangeResponse">
+            <summary>
+            When returned by a BotProxy using the GenericBot scripts,
+            the inContact platform can continue the GenericBot script loop (prompt/collect response),
+            or break out of the BotLoop, returning control to the inContact script (with optional automatic command payloads)
+            
+            </summary>
+        </member>
+        <member name="T:icRestLib.BotExchangeResponse.BotExchangeBranch">
+            <summary>
+            Branching options for GenericBots
+            </summary>
+        </member>
+        <member name="P:icRestLib.BotExchangeResponse.branchName">
+            <summary>
+            Branching options for GenericBot.  Possible values:
+              •DoNotBegin - Applicable to an initialize operation, do not run the bot
+              •PromptAndCollectNextResponse - Continue the GenericBot loop by prompting user and collecting next response
+              •ReturnControlToScript - Break out of the bot loop and return control to inContact script
+              •EndContact - End the Contact, depending on media type (hangup phone call, etc)
+              •AudioInputUntranscribeable - Audio utterance provided no transcription (noisy environment, caugh, etc).  MediaServer may choose to continue utterance detection and resubmit for the same 'turn'
+              •Error - Something went wrong.  See ErrorDetails variable
+            </summary>
+        </member>
+        <member name="P:icRestLib.BotExchangeResponse.nextPromptSequence">
+            <summary>
+            Sequence of prompts to be rendered to customer on next round of the BotLoop
+            </summary>
+        </member>
+        <member name="P:icRestLib.BotExchangeResponse.intentInfo">
+            <summary>
+            Information from the bot on current user intent
+            </summary>
+        </member>
+        <member name="P:icRestLib.BotExchangeResponse.nextPromptBehaviors">
+            <summary>
+            Instructions for the next round of prompting the user
+            </summary>
+        </member>
+        <member name="P:icRestLib.BotExchangeResponse.customPayload">
+            <summary>
+            Supply any named data to the platform as 'script variables'.
+            These variables can be used in custom scripting, or referenced in subsequent prompts using {syntax}.
+            
+            Recommend against nested JSON structures, as custom SNIPPET scripting is required to dereference nested
+            values.  Scripting is more convenient is customVariables is a flat, single level JSON object
+            </summary>
+        </member>
+        <member name="P:icRestLib.BotExchangeResponse.errorDetails">
+            <summary>
+            Diagnostic information for errors, and error handling behavior configuration
+            </summary>
+        </member>
+        <member name="P:icRestLib.BotExchangeResponse.botSessionState">
+            <summary>
+            A state object that will be returned in the next 'botExchange' of the GenericBot loop.
+            This should contain at least enough information to form a unique session identifier, and allow a bot to resume from where it left off in the last exchange.
+            This can be used to persist the entire bot state in a session, allowing for 'stateless' server side implementations.
+            Including the entire transcript in this object is also possible, though size implications should be considered.
+            </summary>
+        </member>
+        <member name="P:icRestLib.BotInitializeParameters.initialparameters">
+            <summary>
+            Extensible parameter structure used to initialize a bot session.  This can be things like access keys, bot names/aliases/urls, version indicators.
+            Can also include arbitrary contact meta data used to decide which bot to run, etc
+            </summary>
+        </member>
+        <member name="P:icRestLib.BotInitializeParameters.sessionIsVoiceEnabled">
+            <summary>
+            While striving to be able to support arbitrary media channels (chats, voice, email, sms, social, etc), voice handling is fairly unique for 'prompt' formats, etc and collection methods (DTMF, etc)
+            This parameter will let the bot framework know on to format prompts for Voice Channels (TTS mark ups, wav file references, etc)
+            </summary>
+        </member>
+        <member name="P:icRestLib.CollectDtmfRules.detectDtmf">
+            <summary>
+            Should DTMF be detected
+            </summary>
+        </member>
+        <member name="P:icRestLib.CollectDtmfRules.clearDigits">
+            <summary>
+            Should any previously detected digits be cleared before applying collection rules?
+            </summary>
+        </member>
+        <member name="P:icRestLib.CollectDtmfRules.terminationCharacters">
+            <summary>
+            Any DTMF characters to be used as termination indicators.  Typcially a single '#' character.  A single '@' character indicates ANY DTMF digit detected will terminate the collection.
+            </summary>
+        </member>
+        <member name="P:icRestLib.CollectDtmfRules.stripTerminator">
+            <summary>
+            If a terminator character is detected, should it be stripped out of the result?  (User hits 10#--should the result variable be '10' or '10#')
+            </summary>
+        </member>
+        <member name="P:icRestLib.CollectDtmfRules.interDigitTimeoutMilliseconds">
+            <summary>
+            If this amount of time passes between already pressed didgits, the collection completes.
+            For example, 'On a scale of 1 to 10, how do you like X?'  A user presses 1, and may press a 0.  How long to wait before accepting 1 as the answer.
+            </summary>
+        </member>
+        <member name="P:icRestLib.CollectDtmfRules.maxDigits">
+            <summary>
+            The maximum number of digits to collect a response, regardless of timeouts and terminationCharacters
+            </summary>
+        </member>
+        <member name="T:icRestLib.GenericBotExchangeActionRequestResponse">
+            <summary>
+            When returned by a Bot Proxy using the GenericBot scripts,
+            the inContact platform can continue the GenericBot script loop (prompt/collect response),
+            or break out of the loop, returning control to the inContact script (with optional automatic command payloads)
+            
+            </summary>
+        </member>
+        <member name="T:icRestLib.GenericBotExchangeActionRequestResponse.GenericBotBranch">
+            <summary>
+            Branching options for GenericBot.  Possible values:
+              •ReturnControlToScript - Break out of the bot loop and return control to inContact script
+              •PromptAndCollectNextResponse - Continue the GenericBot loop by prompting user and collecting next response
+              •EndContact - End the Contact, depending on media type (hangup phone call, etc
+              •TransferContact - Applicable to Voice media.  User TransferParams to transfer call to destination number with optional SIP headers
+              •RequestAgent - Queue contact to ACD using RequestAgentParams.  Optionally play hold music for Voice media
+              •Error - Something went wrong.  See ErrorDetails variable
+            </summary>
+        </member>
+        <member name="P:icRestLib.GenericBotExchangeActionRequestResponse.BranchName">
+            <summary>
+            Branching options for GenericBot.  Possible values:
+              •ReturnControlToScript - Break out of the bot loop and return control to inContact script
+              •PromptAndCollectNextResponse - Continue the GenericBot loop by prompting user and collecting next response
+              •EndContact - End the Contact, depending on media type (hangup phone call, etc
+              •TransferContact - Applicable to Voice media.  User TransferParams to transfer call to destination number with optional SIP headers
+              •RequestAgent - Queue contact to ACD using RequestAgentParams.  Optionally play hold music for Voice media
+              •Error - Something went wrong.  See ErrorDetails variable
+            </summary>
+        </member>
+        <member name="P:icRestLib.GenericBotExchangeActionRequestResponse.actionResultCode">
+            <summary>
+            Field is required for compatibility with generic ActionRequest structure, but its purpose it largely overriden by BranchName.
+            </summary>
+        </member>
+        <member name="P:icRestLib.GenericBotExchangeActionRequestResponse.nameValueParameters">
+            <summary>
+            Explicitly named variable values that will be populated in the inContact script
+            </summary>
+        </member>
+        <member name="P:icRestLib.GenericBotExchangeActionRequestResponse.actionExecutionInfo">
+            <summary>
+            Return the same, unedited actionExecutionInfo sent in the ActionRequest.  Used for troubleshooting, billing, and telemetry.
+            Can be used to correlate asynchronous request processing confusing
+            </summary>
+        </member>
+        <member name="T:icRestLib.GenericBotExchangeActionResponseNameValueParameters">
+            <summary>
+            Explicitly named variable values that will be populated in the inContact script
+            </summary>
+        </member>
+        <member name="P:icRestLib.GenericBotExchangeActionResponseNameValueParameters.nextPrompt">
+            <summary>
+            The prompt that the bot should speak next in the GenericBot loop
+            The format is identified by "nextPromptFormat" field,
+            </summary>
+        </member>
+        <member name="P:icRestLib.GenericBotExchangeActionResponseNameValueParameters.nextPrompt_Format">
+            <summary>
+            Options for the format of "nextPrompt" value
+            •text - plain text (for chat bots or text to speech)
+            •inContactPromptSequence - inContact's prompt sequence syntax which allows for any mixture of pre-recorded wav files and text-to-speech (see Studio online help)
+            •base64EncodedG711ulaw - an actual audio payload (not yet supported by MediaServer as of version 7.5)
+            </summary>
+        </member>
+        <member name="P:icRestLib.GenericBotExchangeActionResponseNameValueParameters.nextPrompt_enableCustomerBarge">
+            <summary>
+            Set to true to allow customer to interrupt the prompt with utterance.
+            Future enhancements may include sensativity settings, etc.
+            </summary>
+        </member>
+        <member name="P:icRestLib.GenericBotExchangeActionResponseNameValueParameters.nextCollect_UserInputSource">
+            <summary>
+            Control the method for the next response collection from the user. 
+            Possible values:
+            • TRANSCRIPT - Use for chat/SMS.  If bot session is a voice channel, platform will invoke generic transcription and submit text transcript in the next response 
+            • UTTERANCE_AUDIO - submit the actual audio samples in the next response (only applicable for Voice sessions)
+            • DTMF_ONLY_AS_TEXT - do not detect audio utterances or record audio.  Only collect DTMF responses and send as text  (only applicable for Voice sessions)
+            </summary>
+        </member>
+        <member name="P:icRestLib.GenericBotExchangeActionResponseNameValueParameters.nextCollect_DtmfRules">
+            <summary>
+            Rules on if and how DTMF digits should be collected from voice customers
+            </summary>
+        </member>
+        <member name="P:icRestLib.GenericBotExchangeActionResponseNameValueParameters.errorDetails">
+            <summary>
+            If an error occurred, errorDetails should be populated with useful information about the problem
+            </summary>
+        </member>
+        <member name="P:icRestLib.GenericBotExchangeActionResponseNameValueParameters.botSessionState">
+            <summary>
+            A state object that should be returned in the next "botExchange" of the GenericBot loop.
+            This should contain at least a unique session identifier.
+            This can be used to persist bot state in a session, allowing for "stateless" server side implementations.
+            </summary>
+        </member>
+        <member name="T:icRestLib.IntentInfo">
+            <summary>
+            Intent information on the current Bot exchange response
+            </summary>
+        </member>
+        <member name="P:icRestLib.IntentInfo.Intent">
+            <summary>
+            A string identification of the current intent recognized by the bot
+            </summary>
+        </member>
+        <member name="P:icRestLib.IntentInfo.Context">
+            <summary>
+            A string identification of the current context known by the bot (context of the intent)
+            </summary>
+        </member>
+        <member name="P:icRestLib.IntentInfo.IntentConfidence">
+            <summary>
+            Level of confidence in the Intent being correctly identified
+            </summary>
+        </member>
+        <member name="P:icRestLib.IntentInfo.LastUserUtterance">
+            <summary>
+            The last user input transcript
+            </summary>
+        </member>
+        <member name="P:icRestLib.IntentInfo.Slots">
+            <summary>
+            Slot name and values for the current intent recognition
+            </summary>
+        </member>
+        <member name="T:icRestLib.PromptAndCollectNextResponseParams">
+            <summary>
+            Fine grained control over audio/DTMF collection
+            </summary>
+        </member>
+        <member name="P:icRestLib.PromptAndCollectNextResponseParams.dtmfCollectionRules">
+            <summary>
+            Only applicable to voice session---rules for if and how to collect DTMF digits
+            </summary>
+        </member>
+        <member name="P:icRestLib.PromptAndCollectNextResponseParams.nextResponseAudioCollectionType">
+            <summary>
+            Control the method for the next response collection from the user.  Only applicable for Voice sessions
+            Possible values:
+            • SEND_UTTERANCE - submit the actual audio samples in the next response
+            • SEND_TRANSCRIBED_TEXT - invoke generic transcription and submit text transcript in the next response
+            • DTMF_ONLY - do not detect audio utterances or record audio.  Only collect DTMF responses
+            </summary>
+        </member>
+        <member name="P:icRestLib.PromptBargeConfiguration.enableSpeakerBarge">
+            <summary>
+            Set to true to allow customer to interrupt the prompt with utterance.
+            If false, the entire prompt sequence will be played before the customer audio will be collected.
+            Future enhancements may include sensativity settings, etc.
+            </summary>
+        </member>
+        <member name="T:icRestLib.PromptBehaviors">
+            <summary>
+            Specify rules on how to render and capture a round of prompts
+            </summary>
+        </member>
+        <member name="P:icRestLib.PromptBehaviors.silenceRules">
+            <summary>
+            Rules about how long to wait for human and machine prompts, and what to do in case of delay
+            </summary>
+        </member>
+        <member name="P:icRestLib.PromptBehaviors.audioCollectionRules">
+            <summary>
+            Rules on how to capture user input through audio channel
+            </summary>
+        </member>
+        <member name="M:icRestLib.PromptBehaviors.#ctor">
+            <summary>
+            Construct a PromptBehavior object
+            </summary>
+        </member>
+        <member name="T:icRestLib.PromptSequence">
+            <summary>
+            Sequential lists of prompt definitions which will be rendered to the customer.
+            For Voice sessions, the sequence can be a mix of Text-To-Speech and pre-recorded audio
+            </summary>
+        </member>
+        <member name="P:icRestLib.PromptSequence.prompts">
+            <summary>
+            Sequential lists of prompt definitions which will be rendered to the customer.
+            For Voice sessions, the sequence can be a mix of Text-To-Speech and pre-recorded audio
+            </summary>
+        </member>
+        <member name="M:icRestLib.PromptSequence.getInContactScriptPromptSequenceString">
+            <summary>
+            Return prompt sequence definition in the format used by inContact scripts (PLAY, MENU, ASR actions, etc).
+            </summary>
+        </member>
+        <member name="T:icRestLib.PromptDefinition">
+            <summary>
+            Definition of a single prompt in a PromptSequence
+            </summary>
+        </member>
+        <member name="P:icRestLib.PromptDefinition.transcript">
+            <summary>
+            Human readable, friendly text representation of the prompt.
+            If the prompt is text-to-speech with markup for example, this representation is better for historical transcript
+            If the prompt is a pre-recorded wav file, this value will be used in transcript
+            </summary>
+        </member>
+        <member name="P:icRestLib.PromptDefinition.base64EncodedG711ulawWithWavHeader">
+            <summary>
+            Audio payload supplied by the bot provider.  The inContact MediaServer will save this file locally, but
+            the file will only be referenceable during the lifetime of the phone call identified with ContactId 
+            (once the call ends, the file will be deleted).
+            The MediaServer will automatically reformulate the "audioFilePath" to reference the local file, and
+            remove this 'base64EncodedG711ulawWithWavHeader' payload before relaying the response to the ScriptEngine (too much data)
+            </summary>
+        </member>
+        <member name="P:icRestLib.PromptDefinition.audioFilePath">
+             <summary>
+             Optional path to a pre-recorded wav file.  For Voice sessions, if a valid audioFilePath is supplied, the specified audio will
+             be rendered instead of Text-To-Speech.
+             Variables can be used in the path to support Persona variations (different personalities and languages)
+            
+             For example a {persona} variable of 'Emma' might be a german female recording for  
+             '/prompts/{persona}/greeting.wav'
+             </summary>
+        </member>
+        <member name="P:icRestLib.PromptDefinition.textToSpeech">
+            <summary>
+            Text to speech formated representation of the prompt.  SSML and other mark-up support varies by vendor.
+            If 'textToSpeech' value is null or empty, the 'transcript' text will be used for TTS 
+            </summary>
+        </member>
+        <member name="P:icRestLib.PromptDefinition.mediaSpecificObject">
+            <summary>
+            For chat channels for example, this may contain instructions to render an image or a link
+            </summary>
+        </member>
+        <member name="T:icRestLib.SilenceRules">
+            <summary>
+            Rules controlling silence for both the bot and human in and exchange
+            </summary>
+        </member>
+        <member name="P:icRestLib.SilenceRules.engageComfortSequence">
+            <summary>
+            If true, the comfortPromptSequence will be rendered if 'botResponseDelayTolerance' elapses before the next BotExchangeResponse is returned
+            </summary>
+        </member>
+        <member name="P:icRestLib.SilenceRules.botResponseDelayTolerance">
+            <summary>
+            How long (in milliseconds) the user should endure silence from the bot before comfortSequence starts (if engageComfortSequence is true)
+            Anecdotal recommendation is that more than 4 seconds (4000ms) of silence in a conversation becomes awkward.
+            </summary>
+        </member>
+        <member name="P:icRestLib.SilenceRules.comfortPromptSequence">
+            <summary>
+            Sequence of prompts to render if botResponseDelayTolerance is exceeded
+            </summary>
+        </member>
+        <member name="P:icRestLib.SilenceRules.millisecondsToWaitForUserResponse">
+            <summary>
+            Overall interval to wait for user input, before submitting a NO_INPUT
+            </summary>
+        </member>
+        <member name="T:icRestLib.UtteranceCollectAndArchiveRules">
+            <summary>
+            Rules defining how an utterance should be collected and archived to Storage Services.
+            This is only applicable if collectionType is set as "SEND_CONFIRMATION_OF_ARCHIVED_UTTERANCE"
+            </summary>
+        </member>
+        <member name="P:icRestLib.UtteranceCollectAndArchiveRules.storageServicesUtteranceArchivePath">
+            <summary>
+            If a valid file path is specificied, the utterance audio will be stored in Storage Services as a g711 ulaw wav file
+            </summary>
+        </member>
+        <member name="T:icRestLib.ActionRequestTelemetry">
+            <summary>
+            Everything about an individual ActionRequest that should be sent to telemetry.
+            Everything in the ActionRequest object is included, EXCEPT for parameters.
+            Parameters would be GREAT to have, but I am excluding them for size and compliance fears
+            </summary>
+        </member>
+        <member name="P:icRestLib.ActionRequestTelemetry.utcTimeOfActionRequest">
+            <summary>
+            UTC time the request was processed
+            </summary>
+        </member>
+        <member name="P:icRestLib.ActionRequestTelemetry.ActionExecutionHost">
+            <summary>
+            Host name of the service that executed the request
+            </summary>
+        </member>
+        <member name="P:icRestLib.ActionRequestTelemetry.ActionExecutionProcessName">
+            <summary>
+            The name of the service or process that executed the reqest
+            </summary>
+        </member>
+        <member name="P:icRestLib.ActionRequestTelemetry.ActionExecutionProcessVersion">
+            <summary>
+            Version/build information of the service or process the executed the request
+            </summary>
+        </member>
+        <member name="P:icRestLib.ActionRequestTelemetry.ActionExecutionProcessTelemetry">
+            <summary>
+            Generic JSON object for telemetry data specific to the service
+            </summary>
+        </member>
+        <member name="P:icRestLib.ActionRequestTelemetry.actionExecutionInfo">
+            <summary>
+            Details of the action request that should be recorded in telemetry.
+            </summary>
+        </member>
+        <member name="P:icRestLib.ActionRequestTelemetry.systemTelemetryData">
+            <summary>
+            Data about the system making the action request
+            </summary>
+        </member>
+        <member name="M:icRestLib.ActionRequestTelemetry.CreateFromActionRequest(icRestLib.ActionRequestAbstractBase)">
+            <summary>
+            Create a generic telemetry object based on an actionRequest
+            </summary>
+        </member>
+        <member name="T:icRestLib.TelemetryRelatedClasses.ITelemetryMeteringEvent">
+            <summary>
+            Given an ActionRequest, generate a standard telemetry metering event for the Kinesis metering stream
+            </summary>
+        </member>
+        <member name="M:icRestLib.TelemetryRelatedClasses.ITelemetryMeteringEvent.GenerateTelemetryMeteringEvent(icRestLib.ActionRequestAbstractBase)">
+            <summary>
+            Write a telemetry event
+            </summary>
+        </member>
+        <member name="T:icRestLib.SystemTelemetryData">
+            <summary>
+            Any data about the api consumer that may be useful for debugging, and/or telemetry data (billing, usage reports, etc).
+            This is the place for data that is NOT tied to an inContact script action, but related to behind-the-scenes infrastructure
+            </summary>
+        </member>
+        <member name="P:icRestLib.SystemTelemetryData.consumerProcessHost">
+            <summary>
+            Host name of the API caller
+            </summary>
+        </member>
+        <member name="P:icRestLib.SystemTelemetryData.consumerProcessName">
+            <summary>
+            Process/application name of the API caller.  For example, 'EsnMediaServer.exe'
+            </summary>
+        </member>
+        <member name="P:icRestLib.SystemTelemetryData.consumerProcessVersion">
+            <summary>
+            Any version information about the application calling the API
+            </summary>
+        </member>
+        <member name="P:icRestLib.SystemTelemetryData.inContactClusterAlias">
+            <summary>
+            If applicable and available, supply inContact cluster alias (for example: 'C7', or 'HC19')
+            </summary>
+        </member>
+        <member name="P:icRestLib.SystemTelemetryData.inContactScriptEngineHost">
+            <summary>
+            If applicable and available, supply inContact script engine host name (for example: 'lax-c4cor01' or 'aoa-c32cor01')
+            </summary>
+        </member>
+        <member name="P:icRestLib.SystemTelemetryData.consumerMetaData">
+            <summary>
+            Arbitrary and extensible data about the API consumer
+            </summary>
+        </member>
+        <member name="T:icRestLib.TelemetryMeteringEvent">
+            <summary>
+            Schema defined here: https://tlvconfluence01.nice.com/display/IN/Telemetry%3A+Metering
+            A standard structure to send to the Telemetry Metering Kinesis stream
+            </summary>
+        </member>
+        <member name="P:icRestLib.TelemetryMeteringEvent.appName">
+            <summary>
+            Unique Application Identifier - Name of the Application
+            </summary>
+        </member>
+        <member name="P:icRestLib.TelemetryMeteringEvent.eventType">
+            <summary>
+            The type of event, Microservice wants to publish - Required for Initialization
+            </summary>
+        </member>
+        <member name="P:icRestLib.TelemetryMeteringEvent.version">
+            <summary>
+            Version of the schema. Details in Queries section.
+            </summary>
+        </member>
+        <member name="P:icRestLib.TelemetryMeteringEvent.eventId">
+            <summary>
+            Unique event IDs generated by Applications for each event. T
+            </summary>
+        </member>
+        <member name="P:icRestLib.TelemetryMeteringEvent.eventTime">
+            <summary>
+            The time at which the event occurred in the Application (not the time when auditing event was created) in ISO-8601 format in UTC or GMT.
+            </summary>
+        </member>
+        <member name="P:icRestLib.TelemetryMeteringEvent.productName">
+            <summary>
+            Unique Product name, use if available from Product Catalog, else provide a unique name
+            </summary>
+        </member>
+        <member name="P:icRestLib.TelemetryMeteringEvent.featureName">
+            <summary>
+            Feature name for which metering is done (from Product Catalog), else provide unique name (unique in combination with Application name)
+            </summary>
+        </member>
+        <member name="P:icRestLib.TelemetryMeteringEvent.userId">
+            <summary>
+            User Id which sending the metering event
+            </summary>
+        </member>
+        <member name="P:icRestLib.TelemetryMeteringEvent.tenantId">
+            <summary>
+            Tenant / BU for which metering is done. This will always be present for the event, basis for billing.
+            </summary>
+        </member>
+        <member name="P:icRestLib.TelemetryMeteringEvent.meteredParam">
+            <summary>
+            ttribute/ action / parameter what is being measured.
+            </summary>
+        </member>
+        <member name="P:icRestLib.TelemetryMeteringEvent.prodTypeId">
+            <summary>
+            The ProdTypeId that is used to drive CadeBill invoicing. This is from Product Catalog, and is required for billable features.
+            </summary>
+        </member>
+        <member name="P:icRestLib.TelemetryMeteringEvent.quantity">
+            <summary>
+            Quantity of the MeteredParam. Duration of recording, number of agents, storage quantity
+            </summary>
+        </member>
+        <member name="P:icRestLib.TelemetryMeteringEvent.quantityUnits">
+            <summary>
+            Unit of the quantity metered, from Dictionary.
+            </summary>
+        </member>
+        <member name="P:icRestLib.TelemetryMeteringEvent.comments">
+            <summary>
+            Additional comments
+            </summary>
+        </member>
+        <member name="P:icRestLib.TelemetryMeteringEvent.customFields">
+            <summary>
+            JSON object containing the custom field details. Custom reporting would be required for custom fields.
+            </summary>
+        </member>
+        <member name="T:icRestLib.CommentsFinder">
+            <summary>
+            Utility to find comments file path from assembly.  Allows swagger gen from comments in nuget package
+            </summary>
+        </member>
+        <member name="M:icRestLib.CommentsFinder.tryGetXmlCommentsPath(System.String@)">
+            <summary>
+            Try get to get path to XML comments (should come along side icRestLib.dll from the nuget package
+            </summary>
+        </member>
+        <member name="M:icRestLib.CommentsFinder.getXmlCommentsPath">
+            <summary>
+            Calculate a path to where the XML comments file SHOULD be
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:icRestLib.G711Transcoder">
+            <summary>
+            Used to convert between G711 8khz 8 bit samples and linear PCM 16 bit
+            </summary>
+        </member>
+        <member name="M:icRestLib.G711Transcoder.GetLinearPcmMemoryStreamFromG711File(System.String)">
+            <summary>
+            ASSume that "fileName" is an accessible, valid g711 ulaw 8khz 8 bit mono file with a valid wav header
+            Return raw linear PCM 16 bit mono memory stream (no header)
+            </summary>
+            <param name="fileName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:icRestLib.G711Transcoder.decode(System.Byte)">
+            <summary>
+            Decode one mu-law byte. For internal use only.
+            </summary>
+            <param name="mulaw">The encoded mu-law byte</param>
+            <returns>A short containing the 16-bit result</returns>
+        </member>
+        <member name="M:icRestLib.G711Transcoder.RIFFHeaderWrite(System.IO.BinaryWriter,System.UInt32)">
+            <summary>
+            Write a standard wav hear to the stream, to preceed raw audio
+            </summary>
+        </member>
+        <member name="M:icRestLib.G711Transcoder.transcodeLinearToG711(System.IO.Stream,System.IO.MemoryStream@)">
+            <summary>
+            Given that the source stream is 16 bit linear PCM, create a G711ulaw Wav file
+            (This is used to convert AWS Polly HTTP reponse data to a wav file played natively over telecom network)
+            </summary>
+            <param name="sourcePcmStream"></param>
+            <param name="destg711File"></param>
+        </member>
+    </members>
+</doc>

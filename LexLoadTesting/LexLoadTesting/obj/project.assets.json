@@ -1,0 +1,241 @@
+{
+  "version": 3,
+  "targets": {
+    "net5.0": {
+      "AWSSDK.Core/3.7.11.2": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.1/AWSSDK.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/AWSSDK.Core.dll": {}
+        }
+      },
+      "AWSSDK.Lex/3.7.1.153": {
+        "type": "package",
+        "dependencies": {
+          "AWSSDK.Core": "[3.7.11.2, 4.0.0)"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/AWSSDK.Lex.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/AWSSDK.Lex.dll": {}
+        }
+      },
+      "AWSSDK.LexRuntimeV2/3.7.4.43": {
+        "type": "package",
+        "dependencies": {
+          "AWSSDK.Core": "[3.7.11.2, 4.0.0)"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/AWSSDK.LexRuntimeV2.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/AWSSDK.LexRuntimeV2.dll": {}
+        }
+      },
+      "Newtonsoft.Json/13.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "AWSSDK.Core/3.7.11.2": {
+      "sha512": "p+iZkaC1OCWnbJtfR08KX8Wxzownf2LcOqjEjEdNu0I9cxhu7G14YzB4xSyRuIBBlicxbM39aRX32dwfL+s+dw==",
+      "type": "package",
+      "path": "awssdk.core/3.7.11.2",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "awssdk.core.3.7.11.2.nupkg.sha512",
+        "awssdk.core.nuspec",
+        "lib/net35/AWSSDK.Core.dll",
+        "lib/net35/AWSSDK.Core.pdb",
+        "lib/net35/AWSSDK.Core.xml",
+        "lib/net45/AWSSDK.Core.dll",
+        "lib/net45/AWSSDK.Core.pdb",
+        "lib/net45/AWSSDK.Core.xml",
+        "lib/netcoreapp3.1/AWSSDK.Core.dll",
+        "lib/netcoreapp3.1/AWSSDK.Core.pdb",
+        "lib/netcoreapp3.1/AWSSDK.Core.xml",
+        "lib/netstandard2.0/AWSSDK.Core.dll",
+        "lib/netstandard2.0/AWSSDK.Core.pdb",
+        "lib/netstandard2.0/AWSSDK.Core.xml",
+        "tools/account-management.ps1"
+      ]
+    },
+    "AWSSDK.Lex/3.7.1.153": {
+      "sha512": "k8yaeqFvFh4+TEp+dnNK0DpfTSO1AF9k2CtRU9D/KerjcGMxvClzLA42u03z5h3LwnnZkQeGbYRTReL0jlCAuA==",
+      "type": "package",
+      "path": "awssdk.lex/3.7.1.153",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "analyzers/dotnet/cs/AWSSDK.Lex.CodeAnalysis.dll",
+        "awssdk.lex.3.7.1.153.nupkg.sha512",
+        "awssdk.lex.nuspec",
+        "lib/net35/AWSSDK.Lex.dll",
+        "lib/net35/AWSSDK.Lex.pdb",
+        "lib/net35/AWSSDK.Lex.xml",
+        "lib/net45/AWSSDK.Lex.dll",
+        "lib/net45/AWSSDK.Lex.pdb",
+        "lib/net45/AWSSDK.Lex.xml",
+        "lib/netcoreapp3.1/AWSSDK.Lex.dll",
+        "lib/netcoreapp3.1/AWSSDK.Lex.pdb",
+        "lib/netcoreapp3.1/AWSSDK.Lex.xml",
+        "lib/netstandard2.0/AWSSDK.Lex.dll",
+        "lib/netstandard2.0/AWSSDK.Lex.pdb",
+        "lib/netstandard2.0/AWSSDK.Lex.xml",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
+      ]
+    },
+    "AWSSDK.LexRuntimeV2/3.7.4.43": {
+      "sha512": "aoe09wEnpXrXcZiQgDJwl7nd1SmZ5CMnQW66LFQS3iQXgYCdO7Q2gOlBJ1AvHPUBjLCjrZnI4JSqXqPyst2Sig==",
+      "type": "package",
+      "path": "awssdk.lexruntimev2/3.7.4.43",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "analyzers/dotnet/cs/AWSSDK.LexRuntimeV2.CodeAnalysis.dll",
+        "awssdk.lexruntimev2.3.7.4.43.nupkg.sha512",
+        "awssdk.lexruntimev2.nuspec",
+        "lib/net35/AWSSDK.LexRuntimeV2.dll",
+        "lib/net35/AWSSDK.LexRuntimeV2.pdb",
+        "lib/net35/AWSSDK.LexRuntimeV2.xml",
+        "lib/net45/AWSSDK.LexRuntimeV2.dll",
+        "lib/net45/AWSSDK.LexRuntimeV2.pdb",
+        "lib/net45/AWSSDK.LexRuntimeV2.xml",
+        "lib/netcoreapp3.1/AWSSDK.LexRuntimeV2.dll",
+        "lib/netcoreapp3.1/AWSSDK.LexRuntimeV2.pdb",
+        "lib/netcoreapp3.1/AWSSDK.LexRuntimeV2.xml",
+        "lib/netstandard2.0/AWSSDK.LexRuntimeV2.dll",
+        "lib/netstandard2.0/AWSSDK.LexRuntimeV2.pdb",
+        "lib/netstandard2.0/AWSSDK.LexRuntimeV2.xml",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
+      ]
+    },
+    "Newtonsoft.Json/13.0.1": {
+      "sha512": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
+      "type": "package",
+      "path": "newtonsoft.json/13.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.xml",
+        "newtonsoft.json.13.0.1.nupkg.sha512",
+        "newtonsoft.json.nuspec",
+        "packageIcon.png"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net5.0": [
+      "AWSSDK.Lex >= 3.7.1.153",
+      "AWSSDK.LexRuntimeV2 >= 3.7.4.43",
+      "Newtonsoft.Json >= 13.0.1"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\ajindal\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\ajindal\\source\\repos\\LexLoadTesting\\LexLoadTesting\\LexLoadTesting.csproj",
+      "projectName": "LexLoadTesting",
+      "projectPath": "C:\\Users\\ajindal\\source\\repos\\LexLoadTesting\\LexLoadTesting\\LexLoadTesting.csproj",
+      "packagesPath": "C:\\Users\\ajindal\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ajindal\\source\\repos\\LexLoadTesting\\LexLoadTesting\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\ajindal\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net5.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {},
+        "https://www.myget.org/F/incontact-dev/auth/82291ab9-4d48-4875-8cf1-4089c331ef51/api/v2/": {},
+        "https://www.myget.org/F/incontact-dev/auth/82291ab9-4d48-4875-8cf1-4089c331ef51/api/v3/index.json": {}
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net5.0": {
+        "targetAlias": "net5.0",
+        "dependencies": {
+          "AWSSDK.Lex": {
+            "target": "Package",
+            "version": "[3.7.1.153, )"
+          },
+          "AWSSDK.LexRuntimeV2": {
+            "target": "Package",
+            "version": "[3.7.4.43, )"
+          },
+          "Newtonsoft.Json": {
+            "target": "Package",
+            "version": "[13.0.1, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.406\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

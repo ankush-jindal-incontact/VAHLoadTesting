@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "ag38sFipZCrCtnx2/sP7hkfr207FI4YOsfu+2HLx6RhyQ3nw2ERWCgbc/4y95yjw/29ZjDzVCwFkeyMx7IX+UA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\ajindal\\source\\repos\\LexLoadTesting\\LexLoadTesting\\LexLoadTesting.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ajindal\\.nuget\\packages\\awssdk.core\\3.7.11.2\\awssdk.core.3.7.11.2.nupkg.sha512",
+    "C:\\Users\\ajindal\\.nuget\\packages\\awssdk.lex\\3.7.1.153\\awssdk.lex.3.7.1.153.nupkg.sha512",
+    "C:\\Users\\ajindal\\.nuget\\packages\\awssdk.lexruntimev2\\3.7.4.43\\awssdk.lexruntimev2.3.7.4.43.nupkg.sha512",
+    "C:\\Users\\ajindal\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

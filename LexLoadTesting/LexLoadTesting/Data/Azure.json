@@ -1,0 +1,47 @@
+{
+  "executionInfo": {
+    "contactId": 270,
+    "busNo": "100",
+    "requestId": 0,
+    "actionType": "string",
+    "actionId": 0,
+    "scriptName": "string"
+  },
+  "systemTelemetryData": {
+    "consumerProcessHost": "string",
+    "consumerProcessName": "string",
+    "consumerProcessVersion": "string",
+    "inContactClusterAlias": "string",
+    "inContactScriptEngineHost": "string",
+    "consumerMetaData": {
+      "additionalProp1": "string",
+      "additionalProp2": "string",
+      "additionalProp3": "string"
+    }
+  },
+  "parameters": {
+    "virtualAgentId": null,
+    "botConfig": {
+      "directLineSecret": "JE8j0lcKV3w.fp-fKCaC6hTk5TyV7QRWLYokmu7M8mVStvQ7afkAJ2k",
+      "useBYOTextToSpeech": true,
+      "speechServiceKey": "74d855689f0349c0a8b898bce9edcf58",
+      "speechServiceRegion": "westus2",
+      "ttsVoiceName": "en-IE-ConnorNeural",
+      "timeoutMessage": "",
+      "dtmfBreakOutPattern": "001",
+      "useLUISIntent": false,
+      "luisAppId": null,
+      "luisPredictionKey": null,
+      "luisPredictionEndpoint": null,
+      "integrationVersion": "1.0.0"
+    },
+    "userInput": "welcome",
+    "userInputType": "AUTOMATED_TEXT",
+    "mediaType": "voip",
+    "automatedIntent": "welcome"
+  },
+  "base64wavFile": "string",
+  "vendorID": "azure",
+  "autoDetectAudioEncoding": true,
+  "useTestClient": true
+}

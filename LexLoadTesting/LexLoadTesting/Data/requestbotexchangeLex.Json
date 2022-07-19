@@ -1,0 +1,49 @@
+{
+  "executionInfo": {
+    "contactId": 0,
+    "busNo": 1236000356,
+    "requestId": 0,
+    "actionType": "string",
+    "actionId": 0,
+    "scriptName": "string"
+  },
+  "systemTelemetryData": {
+    "consumerProcessHost": "string",
+    "consumerProcessName": "string",
+    "consumerProcessVersion": "string",
+    "inContactClusterAlias": "string",
+    "inContactScriptEngineHost": "string",
+    "consumerMetaData": {
+      "additionalProp1": "string",
+      "additionalProp2": "string",
+      "additionalProp3": "string"
+    }
+  },
+  "parameters": {
+    "userInput": "Can you Please Book my Flight Ticket",
+    "userInputType": "TEXT",
+    "customPayload": null,
+    "botSessionState": "1",
+    "mediaType": "",
+    "virtualAgentId": "AWS_Load_Testing",
+    "botConfig": {
+      "accessKey": "AKIAZVGJ4SJHKCJKYG5X",
+      "secretKey": "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",
+      "region": "us-west-2",
+      "lexVersion": "V2",
+      "botName": "HXHBZQ8KSB",
+      "botAlias": "9M0SKHD6IP",
+      "locale": "en_US",
+      "useLexAccountTextToSpeech": false,
+      "welcomeIntent": "Welcome",
+      "timeoutIntent": "Timeout",
+      "dtmfBreakOutPattern": "00",
+      "integrationVersion": "1.0.0"
+    },
+    "automatedIntent": null
+  },
+  "base64wavFile": null,
+  "vendorID": "lex",
+  "autoDetectAudioEncoding": true,
+  "useTestClient": true
+}
